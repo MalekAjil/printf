@@ -9,7 +9,7 @@
 int print_int(va_list arg)
 {
 	int n = 0;
-	
+
 	n = print_d(va_arg(arg, int));
 	return (n);
 }

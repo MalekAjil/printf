@@ -3,7 +3,7 @@
 int print(const char *format, va_list arg);
 int _printf(const char *format, ...);
 /**
- * printy - function that prints arguments
+ * prints - function that prints arguments
  * @format: the string
  * @arg: the arguments
  * Description - this function links operators to actions
@@ -17,6 +17,14 @@ int prints(const char *format, va_list arg)
 		{'c', print_char},
 		{'s', print_string},
 		{'%', print_percent},
+		{'d', print_int},
+		{'i', print_int},
+		{'b', print_bin},
+		{'o', print_oct},
+		{'x', print_hex},
+		{'X', print_HEX},
+		{'u', print_unsigned},
+		/*{'p', print_pointer},*/
 		{'\0', NULL}};
 
 	while (format != NULL && format[a] != '\0')
