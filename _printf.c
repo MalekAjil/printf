@@ -16,6 +16,7 @@ int prints(const char *format, va_list arg)
 	merge mrg[] = {
 		{'c', print_char},
 		{'s', print_string},
+		{'S', print_string},
 		{'%', print_percent},
 		{'d', print_int},
 		{'i', print_int},
