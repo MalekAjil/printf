@@ -21,6 +21,8 @@ int _printf(const char *const format, ...);
 
 int print_char(va_list arg);
 int print_string(va_list arg);
+int print_reverse(va_list arg);
+int print_rot13(va_list arg);
 int print_percent(void);
 int print_int(va_list arg);
 

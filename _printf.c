@@ -17,6 +17,8 @@ int prints(const char *format, va_list arg)
 		{'c', print_char},
 		{'s', print_string},
 		{'S', print_string},
+		{'r', print_reverse},
+		{'R', print_rot13},
 		{'%', print_percent},
 		{'d', print_int},
 		{'i', print_int},
