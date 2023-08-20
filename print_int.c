@@ -6,7 +6,7 @@
  * Description - function prints a integer argument
  * Return: int
  */
-int print_int(va_list arg)
+int print_int()
 {
-
+	return (0);
 }
