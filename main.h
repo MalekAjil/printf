@@ -6,16 +6,16 @@
 #include <unistd.h>
 
 /**
- * struct pairing - struct for pairing format to fuctions
+ * struct merging - struct for pairing format to fuctions
  *
- * @a: the operator
+ * @c: the operator
  * @ptr: the fuction associated
  */
-typedef struct pairing
+typedef struct merging
 {
 	char c;
 	int (*ptr)();
-} pair;
+} merge;
 
 int _printf(const char *const format, ...);
 int print_char(va_list arg);
