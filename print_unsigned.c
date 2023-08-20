@@ -7,7 +7,7 @@
  */
 int print_unsigned(va_list arg)
 {
-	return (print_u(va_arg(arg, unsigned int)));	
+	return (print_u(va_arg(arg, unsigned int)));
 }
 
 /**
