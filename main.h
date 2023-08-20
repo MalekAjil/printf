@@ -18,6 +18,7 @@ typedef struct merging
 } merge;
 
 int _printf(const char *const format, ...);
+
 int print_char(va_list arg);
 int print_string(va_list arg);
 int print_percent(void);
@@ -32,4 +33,5 @@ int print_x(unsigned int num, short upper);
 int print_bin(va_list arg);
 int print_b(unsigned int num);
 
+int _putchar(char c);
 #endif /* MAIN_H */
