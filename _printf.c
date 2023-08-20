@@ -9,7 +9,7 @@ int _printf(const char *format, ...);
  * Description - this function links operators to actions
  * Return: string length
  */
-int print(const char *format, va_list arg)
+int prints(const char *format, va_list arg)
 {
 	int i = 0, n = 0, add = 0, a = 0;
 
@@ -54,15 +54,15 @@ int print(const char *format, va_list arg)
  */
 int _printf(const char *format, ...)
 {
-	va_list arg;
+	va_list args;
 	int i;
 
 	if (format == NULL)
 		return (0);
-	va_start(arg, format);
+	va_start(args, format);
 	if (format == NULL && *format == '\0')
 		return (-1);
-	i = printy(format, arg);
-	va_end(arg);
+	i = prints(format, args);
+	va_end(args);
 	return (i);
 }
