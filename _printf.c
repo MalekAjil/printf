@@ -40,8 +40,15 @@ int prints(const char *format, va_list arg)
 				{
 					add = mrg[n].ptr(arg);
 					i += add;
+					break;
 				}
 				n++;
+			}
+			if (mrg[n].c == '\0')
+			{
+				write(1, &format[a - 1], 1);
+				write(1, &format[a], 1);
+				i += 2;
 			}
 		}
 		else
