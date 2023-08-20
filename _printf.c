@@ -13,7 +13,7 @@ int prints(const char *format, va_list arg)
 {
 	int i = 0, n = 0, add = 0, a = 0;
 
-	pair pai[] = {
+	merge mrg[] = {
 		{'c', print_char},
 		{'s', print_string},
 		{'%', print_percent},
@@ -26,11 +26,11 @@ int prints(const char *format, va_list arg)
 		if (format[a] == '%')
 		{
 			a++;
-			while (pai[n].c != '\0')
+			while (mrg[n].c != '\0')
 			{
-				if (format[a] == pai[n].c)
+				if (format[a] == mrg[n].c)
 				{
-					add = pai[n].ptr(arg);
+					add = mrg[n].ptr(arg);
 					i += add;
 				}
 				n++;
