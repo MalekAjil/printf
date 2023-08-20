@@ -1,0 +1,2 @@
+#!/bin/bash
+valgrind $printf ./$(ls -t | head -n1)
