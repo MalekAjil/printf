@@ -1,4 +1,7 @@
 #include "main.h"
+int print_hex(va_list arg);
+int print_HEX(va_list arg);
+int print_x(unsigned int hex, short upper);
 
 /**
  * print_hex - prints a hexadecimal
@@ -44,27 +47,27 @@ int print_x(unsigned int hex, short upper)
 		n += print_x(hex / 16, upper);
 	switch (hex % 16)
 	{
-		case 15:
-			n += _putchar('F' + shift);
-			break;
-		case 14:
-			n += _putchar('E' + shift);
-			break;
-		case 13:
-			n += _putchar('D' + shift);
-			break;
-		case 12:
-			n += _putchar('C' + shift);
-			break;
-		case 11:
-			n += _putchar('B' + shift);
-			break;
-		case 10:
-			n += _putchar('A' + shift);
-			break;
-		default:
-			n += _putchar('0' + hex % 16);
-			break;
+	case 15:
+		n += _putchar('F' + shift);
+		break;
+	case 14:
+		n += _putchar('E' + shift);
+		break;
+	case 13:
+		n += _putchar('D' + shift);
+		break;
+	case 12:
+		n += _putchar('C' + shift);
+		break;
+	case 11:
+		n += _putchar('B' + shift);
+		break;
+	case 10:
+		n += _putchar('A' + shift);
+		break;
+	default:
+		n += _putchar('0' + hex % 16);
+		break;
 	}
 	return (n);
 }
