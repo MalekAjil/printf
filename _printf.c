@@ -75,10 +75,12 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i;
 
-	if (format == NULL)
-		return (-1);
 	va_start(args, format);
-	if (format == NULL && *format == '\0')
+
+	if (format == NULL || (format[0] == '%' && format[1] == NULL))
+		return (-1);
+	
+	if (format[0] == '%' && format[1] == ' ' && format[2] == NULL)
 		return (-1);
 	i = prints(format, args);
 	va_end(args);
