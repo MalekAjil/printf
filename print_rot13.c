@@ -3,7 +3,7 @@
 /**
  * print_rot13 - prints a string rotated 13 character
  * @arg: string to be printed
- * 
+ *
  * Return: number of printed bytes
  */
 int print_rot13(va_list arg)
@@ -24,7 +24,7 @@ int print_rot13(va_list arg)
 		else if (a[i] > 64 && a[i] < 91)
 			c = ((a[i] + 13) % 65) + 65;
 		write(1, &c, 1);
-		n++;		
+		n++;
 		i++;
 	}
 	return (n);
