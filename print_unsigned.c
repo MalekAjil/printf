@@ -1,4 +1,6 @@
 #include "main.h"
+int print_unsigned(va_list arg);
+int print_u(unsigned int num);
 
 /**
  * print_unsigned - prints an unsigned int number
