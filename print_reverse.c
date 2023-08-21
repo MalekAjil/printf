@@ -22,8 +22,8 @@ int print_reverse(va_list arg)
 	}
 	for (i = n - 1; i >= 0; i--)
 	{
-		 write(1, &a[i], 1);
-		 n++;
+		write(1, &a[i], 1);
+		n++;
 	}
 	return (n);
 }
