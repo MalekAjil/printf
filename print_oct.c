@@ -1,4 +1,6 @@
 #include "main.h"
+int print_oct(va_list arg);
+int print_o(unsigned int num);
 
 /**
  * print_oct - prints a binary
