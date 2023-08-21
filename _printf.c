@@ -28,7 +28,7 @@ int prints(const char *format, va_list arg)
 		{'X', print_HEX},
 		{'u', print_unsigned},
 		/*{'p', print_pointer},*/
-		{NULL, NULL}};
+		{'\0', NULL}};
 
 	while (format != NULL && format[a] != '\0')
 	{
