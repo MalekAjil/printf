@@ -1,4 +1,6 @@
 #include "main.h"
+int print_int(va_list arg);
+int print_d(int dec);
 
 /**
  * print_int - prints an integer
