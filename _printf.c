@@ -76,7 +76,7 @@ int _printf(const char *format, ...)
 	int i;
 
 	if (format == NULL)
-		return (0);
+		return (-1);
 	va_start(args, format);
 	if (format == NULL && *format == '\0')
 		return (-1);
