@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 /**
  * struct merging - struct for pairing format to fuctions
