@@ -1,4 +1,6 @@
 #include "main.h"
+int print_bin(va_list arg);
+int print_b(unsigned int num);
 
 /**
  * print_bin - prints a binary
