@@ -8,24 +8,33 @@
  */
 int print_rot13(va_list arg)
 {
-	int i = 0, n = 0;
+	int n = 0;
 	char c;
 	char *a = va_arg(arg, char *);
 
 	if (a == NULL)
 	{
-		write(1, "(null)", 6);
-		return (-8);
+		return (write(1, "(null)", 6));
 	}
-	while (a[i] != '\0')
+	while (*a != '\0')
 	{
-		if (a[i] > 96 && a[i] < 123)
-			c = ((a[i] + 13) % 97) + 97;
-		else if (a[i] > 64 && a[i] < 91)
-			c = ((a[i] + 13) % 65) + 65;
-		write(1, &c, 1);
-		n++;
-		i++;
+		c = *a;
+		if (c > 96 && c < 123)
+		{
+			if (c + 13 > 122)
+				c -= 13;
+			else
+				c += 13;
+		}
+		else if (c > 64 && c < 91)
+		{
+			if (c + 13 > 90)
+				c -= 13;
+			else
+				c += 13;
+		}
+		n += write(1, &c, 1);
+		a++;
 	}
 	return (n);
 }
