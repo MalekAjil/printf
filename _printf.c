@@ -55,9 +55,7 @@ int prints(const char *format, va_list arg)
 			}
 		}
 		else if (format[a] == '%' && format[a + 1] == '\0')
-		{
 			return (-1);
-		}
 		else
 		{
 			i++;
