@@ -9,9 +9,9 @@ int _printf(const char *format, ...);
  * Description - this function links operators to actions
  * Return: string length
  */
-int prints(const char *format, va_list arg)
+int (*prints(const char *format)) (va_list)
 {
-	int i = 0, n = 0, add = 0, a = 0;
+	unsigned int i = 0;
 
 	merge mrg[] = {
 		{'c', print_char},
@@ -30,38 +30,13 @@ int prints(const char *format, va_list arg)
 		/*{'p', print_pointer},*/
 		{'\0', NULL}};
 
-	while (format != NULL && format[a] != '\0')
+	while (mrg[i].c)
 	{
-		n = 0;
-		add = 0;
-		if (format[a] == '%')
-		{
-			a++;
-			while (mrg[n].c != '\0')
-			{
-				if (format[a] == mrg[n].c)
-				{
-					add = mrg[n].ptr(arg);
-					i += add;
-					break;
-				}
-				n++;
-			}
-			if (mrg[n].c == '\0')
-			{
-				write(1, &format[a - 1], 1);
-				write(1, &format[a], 1);
-				i += 2;
-			}
-		}
-		else
-		{
-			i++;
-			write(1, &format[a], 1);
-		}
-		a++;
+		if (mrg[i].c[0] == (*format))
+			return (mrg[i].ptr);
+		i++;
 	}
-	return (i);
+	return (NULL);
 }
 
 /**
@@ -72,19 +47,39 @@ int prints(const char *format, va_list arg)
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i;
-
-	va_start(args, format);
+	va_list arg;
+	int (*f)(va_list);
+	unsigned int i = 0, count = 0;
 
 	if (format == NULL)
 		return (-1);
-	if (!format || !format[1])
-		return (0);
-
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	i = prints(format, args);
-	va_end(args);
-	return (i);
+	va_start(arg, format);
+	while (format[i])
+	{
+		while (format[i] != '%' && format[i])
+		{
+			_putchar(format[i]);
+			count++;
+			i++;
+		}
+		if (format[i] == '\0')
+			return (count);
+		f = prints(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(arg);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
+	}
+	va_end(arg);
+	return (count);
 }
