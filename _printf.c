@@ -30,45 +30,40 @@ int prints(const char *format, va_list arg)
 		{'p', print_pointer},
 		{'\0', NULL}};
 
-	if (format[0] == '%' && format[1] == '\0')
-		i = -1;
-	else
+	while (format != NULL && format[a] != '\0')
 	{
-		while (format != NULL && format[a] != '\0')
+		n = 0;
+		add = 0;
+		if (format[a] == '%' && format[a + 1] != '\0')
 		{
-			n = 0;
-			add = 0;
-			if (format[a] == '%' && format[a + 1] != '\0')
-			{
-				a++;
-				while (mrg[n].c != '\0')
-				{
-					if (format[a] == mrg[n].c)
-					{
-						add = mrg[n].ptr(arg);
-						i += add;
-						break;
-					}
-					n++;
-				}
-				if (mrg[n].c == '\0')
-				{
-					write(1, &format[a - 1], 1);
-					write(1, &format[a], 1);
-					i += 2;
-				}
-			}
-			else if (format[a] == '%' && format[a + 1] == '\0')
-			{
-				return (-1);
-			}
-			else
-			{
-				i++;
-				write(1, &format[a], 1);
-			}
 			a++;
+			while (mrg[n].c != '\0')
+			{
+				if (format[a] == mrg[n].c)
+				{
+					add = mrg[n].ptr(arg);
+					i += add;
+					break;
+				}
+				n++;
+			}
+			if (mrg[n].c == '\0')
+			{
+				write(1, &format[a - 1], 1);
+				write(1, &format[a], 1);
+				i += 2;
+			}
 		}
+		else if (format[a] == '%' && format[a + 1] == '\0')
+		{
+			return (-1);
+		}
+		else
+		{
+			i++;
+			write(1, &format[a], 1);
+		}
+		a++;
 	}
 	return (i);
 }
