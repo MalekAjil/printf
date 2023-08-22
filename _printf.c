@@ -30,36 +30,45 @@ int prints(const char *format, va_list arg)
 		{'p', print_pointer},
 		{'\0', NULL}};
 
-	while (format != NULL && format[a] != '\0')
+	if (format[0] == '%' && format[1] == '\0')
+		i = -1;
+	else
 	{
-		n = 0;
-		add = 0;
-		if (format[a] == '%')
+		while (format != NULL && format[a] != '\0')
 		{
-			a++;
-			while (mrg[n].c != '\0')
+			n = 0;
+			add = 0;
+			if (format[a] == '%' && format[a + 1] != '\0')
 			{
-				if (format[a] == mrg[n].c)
+				a++;
+				while (mrg[n].c != '\0')
 				{
-					add = mrg[n].ptr(arg);
-					i += add;
-					break;
+					if (format[a] == mrg[n].c)
+					{
+						add = mrg[n].ptr(arg);
+						i += add;
+						break;
+					}
+					n++;
 				}
-				n++;
+				if (mrg[n].c == '\0')
+				{
+					write(1, &format[a - 1], 1);
+					write(1, &format[a], 1);
+					i += 2;
+				}
 			}
-			if (mrg[n].c == '\0')
+			else if (format[a] == '%' && format[a + 1] == '\0')
 			{
-				write(1, &format[a - 1], 1);
-				write(1, &format[a], 1);
-				i += 2;
+				return (-1);
 			}
+			else
+			{
+				i++;
+				write(1, &format[a], 1);
+			}
+			a++;
 		}
-		else
-		{
-			i++;
-			write(1, &format[a], 1);
-		}
-		a++;
 	}
 	return (i);
 }
@@ -80,7 +89,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	if (!format || !format[1])
-		return (0);
+		return (-1);
 
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
