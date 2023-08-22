@@ -8,8 +8,7 @@
  */
 int print_char(va_list arg)
 {
-	char n = va_arg(arg, int);
-	
-	write(1, &n, 1);
-	return (1);
+	int n = va_arg(arg, int);
+
+	return (write(1, &n, 1));
 }
