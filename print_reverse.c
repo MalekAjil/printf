@@ -11,20 +11,13 @@ int print_reverse(va_list arg)
 	int i, n = 0;
 	char *a = va_arg(arg, char *);
 
-	if (a == NULL)
+	if (a)
 	{
-		write(1, "(null)", 6);
-		return (-8);
-	}
-	while (*a != '\0')
-	{
-		a++;
-		n++;
-	}
-	for (i = n - 1; i >= 0; i--)
-	{
-		write(1, &a[i], 1);
-		n++;
+		for (i = 0; *a; a++)
+			i++;
+		a--;
+		for (; i > 0; i--, a--)
+			n += _putchar(*a);
 	}
 	return (n);
 }
