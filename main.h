@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#define BUF_SIZE 1024
 /**
  * struct merging - struct for pairing format to fuctions
  *
