@@ -13,13 +13,11 @@ int print_string(va_list arg)
 
 	if (a == NULL)
 	{
-		write(1, "(null)", 6);
-		return (-8);
+		return (write(1, "(null)", 6));
 	}
 	while (*a != '\0')
 	{
-		write(1, a, 1);
-		n++;
+		n += write(1, a, 1);
 		a++;
 	}
 	return (n);
