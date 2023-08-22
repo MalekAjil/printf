@@ -13,8 +13,8 @@
  */
 typedef struct merging
 {
-	char c;
-	int (*ptr)();
+	char *c;
+	int (*ptr)(va_list);
 } merge;
 
 int _printf(const char *const format, ...);
