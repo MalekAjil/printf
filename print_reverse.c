@@ -19,6 +19,7 @@ int print_reverse(va_list arg)
 	while (*a != '\0')
 	{
 		a++;
+		n++;
 	}
 	for (i = n - 1; i >= 0; i--)
 	{
