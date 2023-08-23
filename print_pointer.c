@@ -1,5 +1,5 @@
 #include "main.h"
-char *print_hex_ptr(unsigned long int num);
+int print_hex_ptr(unsigned long int num);
 int print_pointer(va_list arg);
 
 /**
@@ -7,22 +7,32 @@ int print_pointer(va_list arg);
  * @num: arguments.
  * Return: counter.
  */
-char *print_hex_ptr(unsigned long int num)
+int print_hex_ptr(unsigned long int num)
 {
-	int base = 16;
-	static char *rep;
-	static char buff[50];
-	char *p;
+	long int i, *array, counter = 0;
+	unsigned long int temp = num;
 
-	rep = "0123456789abcdef";
-	p = &buff[49];
-	*p = '\0';
-	do {
-		*--p = rep[num % base];
-		num /= base;
-	} while (num != 0);
+	while (num / 16 != 0)
+	{
+		num /= 16;
+		counter++;
+	}
+	counter++;
+	array = malloc(counter * sizeof(long int));
 
-	return (p);
+	for (i = 0; i < counter; i++)
+	{
+		array[i] = temp % 16;
+		temp /= 16;
+	}
+	for (i = counter - 1; i >= 0; i--)
+	{
+		if (array[i] > 9)
+			array[i] = array[i] + 39;
+		_putchar(array[i] + '0');
+	}
+	free(array);
+	return (counter);
 }
 /**
  * print_pointer - prints an hexgecimal number.
@@ -31,13 +41,13 @@ char *print_hex_ptr(unsigned long int num)
  */
 int print_pointer(va_list arg)
 {
-	char *p;
+	void *p;
 	char *s = "(nil)";
-	unsigned long int a;
-	int i = 0;
+	long int a;
+	int b, i;
 
-	a = va_arg(arg, unsigned long int);
-	if (a == NULL)
+	p = va_arg(arg, void*);
+	if (p == NULL)
 	{
 		for (i = 0; s[i] != '\0'; i++)
 		{
@@ -45,12 +55,10 @@ int print_pointer(va_list arg)
 		}
 		return (i);
 	}
-	p = print_hex_ptr(a);
+
+	a = (unsigned long int)p;
 	_putchar('0');
 	_putchar('x');
-	for (i = 0; p[i] != '\0'; i++)
-	{
-		_putchar(p[i]);
-	}
-	return (i);
+	b = print_hex_ptr(a);
+	return (b + 2);
 }
