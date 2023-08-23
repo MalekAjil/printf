@@ -35,7 +35,7 @@ int print_pointer(va_list arg)
 	char *p;
 	char *s = "(nil)";
 	unsigned long int a;
-	int i = 0;
+	int i;
 
 	a = va_arg(arg, unsigned long int);
 	if (!a)
@@ -47,11 +47,11 @@ int print_pointer(va_list arg)
 		return (i);
 	}
 	p = print_hex_ptr(a);
-	_putchar('0');
-	_putchar('x');
-	for (i = 0; p[i] != '\0'; i++)
+	i = _putchar('0');
+	i += _putchar('x');
+	for (; p[i - 2] != '\0'; i++)
 	{
-		_putchar(p[i]);
+		_putchar(p[i - 2]);
 	}
-	return (i + 2);
+	return (i);
 }
