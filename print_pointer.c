@@ -17,8 +17,7 @@ char *print_hex_ptr(unsigned long int num)
 	rep = "0123456789abcdef";
 	p = &buff[49];
 	*p = '\0';
-	do
-	{
+	do {
 		*--p = rep[num % base];
 		num /= base;
 	} while (num != 0);
